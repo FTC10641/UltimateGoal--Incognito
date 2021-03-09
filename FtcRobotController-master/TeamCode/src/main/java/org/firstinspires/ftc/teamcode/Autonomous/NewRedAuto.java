@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.Testing;
+package org.firstinspires.ftc.teamcode.Autonomous;
 
 
 import com.qualcomm.hardware.rev.RevBlinkinLedDriver;
@@ -51,23 +51,24 @@ public class NewRedAuto extends OpMode {
 
         PathA, TurnA, DeliverWobA,
         PullOutA, Turn2A, TowardWobA, PickUpWobA,
-        WobbeYoinkA, TurnToDeliverA, DeliverWob2A,
-        PullOut2A, StraightenA, ParkA,ForwardA, SlowWobA, Turn3A, Turn4A,
+        WobbeYoinkA, TurnToDeliverA, PullOut2A,
+        StraightenA, ParkA,ForwardA,
+        Turn3A, Turn4A,
 
-        PathB, StrafeRightB, FaceTargetB,
-        DeliverWobPt1B, AimB, DeliverWobPt2B,
-        PullOutB, StraightenB, Reverse2B, TurnB,
-        Reverse3B, Straighten2B, PickUpWobB,
-        Turn2B, IntakeRingB, TurnToDeliverB,
-        Straighten3B, ForwardToShootB, ToTargetB,
-        TurnToDeliver2B, DeliverWob3B, PullOut2B,
-        TurnToParkB, ParkB,
+        PathB, FaceTargetB, AimB,
+        PullOutB, StraightenB,
+        Straighten2B, IntakeRingB,
+        TurnToDeliverB, TurnToDeliver2B,
+        ParkB,
 
         PathC, ParkC, StraightenC, FaceRingsC,
-        ForwardToShootC, IntakeRing1C, IntakeRing2C,
-        Turn3B, AimC, BackUpC, FaceRing2C, IntakeRing3C,
+        ForwardToShootC, IntakeRing1C,
+        AimC, BackUpC, FaceRing2C, IntakeRing3C,
         Aim2C, ForwardToDeliverC, Straighten2C, DeliverWobC,
-        PullOutC, FaceTargetC, TurnToParkC, Aim1C, Aim2B, FaceRingB, ForwardToDeliverB, TurnToGrab, TurnToGrabB, StrafeLeftB, ForwardB, DeliverWob2B, DriveToGrabPt2B, DriveToGrabPt1B,
+        PullOutC, FaceTargetC, TurnToParkC, Aim1C,
+        Aim2B, FaceRingB, ForwardToDeliverB, TurnToGrabB,
+        DeliverWob2B, DriveToGrabPt2B,
+        DriveToGrabPt1B,
 
 
 
@@ -432,14 +433,6 @@ public class NewRedAuto extends OpMode {
                     state = State.Straighten2B;
                 }
                 break;
-
-//            case StrafeLeftB:
-//                method.StrafeLeft(.3, 16);
-//                if (method.StrafeDone(16)){
-//                    Reset();
-//                    state = State.Straighten2B;
-//                }
-//                break;
 
             case Straighten2B:
                 method.TurnAbsolute(0, sensors.getZAngle(), .75, .75);
