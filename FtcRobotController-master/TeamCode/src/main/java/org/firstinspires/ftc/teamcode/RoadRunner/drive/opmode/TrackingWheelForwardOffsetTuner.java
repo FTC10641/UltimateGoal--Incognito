@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.RoadRunner.drive.opmode;
+package org.firstinspires.ftc.teamcode.roadRunner.drive.opmode;
 
 import com.acmerobotics.dashboard.FtcDashboard;
 import com.acmerobotics.dashboard.config.Config;
@@ -12,8 +12,8 @@ import com.qualcomm.robotcore.util.MovingStatistics;
 import com.qualcomm.robotcore.util.RobotLog;
 
 import org.firstinspires.ftc.robotcore.internal.system.Misc;
-import org.firstinspires.ftc.teamcode.RoadRunner.drive.SampleMecanumDrive;
-import org.firstinspires.ftc.teamcode.RoadRunner.drive.StandardTrackingWheelLocalizer;
+import org.firstinspires.ftc.teamcode.roadRunner.drive.SampleMecanumDrive;
+import org.firstinspires.ftc.teamcode.roadRunner.drive.StandardTrackingWheelLocalizer;
 
 /**
  * This routine determines the effective forward offset for the lateral tracking wheel.
@@ -34,7 +34,7 @@ import org.firstinspires.ftc.teamcode.RoadRunner.drive.StandardTrackingWheelLoca
  * for the forward offset. You can run this procedure as many times as necessary until a
  * satisfactory result is produced.
  */
-@Disabled
+//@Disabled
 
 @Config
 @Autonomous(group="drive")

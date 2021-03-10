@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.RoadRunner.drive.opmode;
+package org.firstinspires.ftc.teamcode.roadRunner.drive.opmode;
 
 import com.acmerobotics.dashboard.FtcDashboard;
 import com.acmerobotics.dashboard.config.Config;
@@ -11,16 +11,16 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.util.RobotLog;
 
 import org.firstinspires.ftc.robotcore.internal.system.Misc;
-import org.firstinspires.ftc.teamcode.RoadRunner.drive.SampleMecanumDrive;
-import org.firstinspires.ftc.teamcode.RoadRunner.util.LoggingUtil;
-import org.firstinspires.ftc.teamcode.RoadRunner.util.RegressionUtil;
+import org.firstinspires.ftc.teamcode.roadRunner.drive.SampleMecanumDrive;
+import org.firstinspires.ftc.teamcode.roadRunner.util.LoggingUtil;
+import org.firstinspires.ftc.teamcode.roadRunner.util.RegressionUtil;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.firstinspires.ftc.teamcode.RoadRunner.drive.DriveConstants.MAX_RPM;
-import static org.firstinspires.ftc.teamcode.RoadRunner.drive.DriveConstants.RUN_USING_ENCODER;
-import static org.firstinspires.ftc.teamcode.RoadRunner.drive.DriveConstants.rpmToVelocity;
+import static org.firstinspires.ftc.teamcode.roadRunner.drive.DriveConstants.MAX_RPM;
+import static org.firstinspires.ftc.teamcode.roadRunner.drive.DriveConstants.RUN_USING_ENCODER;
+import static org.firstinspires.ftc.teamcode.roadRunner.drive.DriveConstants.rpmToVelocity;
 
 /*
  * Op mode for computing kV, kStatic, and kA from various drive routines. For the curious, here's an
@@ -32,7 +32,7 @@ import static org.firstinspires.ftc.teamcode.RoadRunner.drive.DriveConstants.rpm
  *   4. Adjust the encoder data based on the velocity tuning data and find kA with another linear
  *      regression.
  */
-@Disabled
+//@Disabled
 @Config
 @Autonomous(group = "drive")
 public class AutomaticFeedforwardTuner extends LinearOpMode {

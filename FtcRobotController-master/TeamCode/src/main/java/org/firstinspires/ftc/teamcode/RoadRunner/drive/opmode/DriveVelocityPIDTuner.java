@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.RoadRunner.drive.opmode;
+package org.firstinspires.ftc.teamcode.roadRunner.drive.opmode;
 
 import com.acmerobotics.dashboard.FtcDashboard;
 import com.acmerobotics.dashboard.config.Config;
@@ -14,15 +14,15 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.util.RobotLog;
 
-import org.firstinspires.ftc.teamcode.RoadRunner.drive.SampleMecanumDrive;
+import org.firstinspires.ftc.teamcode.roadRunner.drive.SampleMecanumDrive;
 
 import java.util.List;
 
-import static org.firstinspires.ftc.teamcode.RoadRunner.drive.DriveConstants.MAX_ACCEL;
-import static org.firstinspires.ftc.teamcode.RoadRunner.drive.DriveConstants.MAX_VEL;
-import static org.firstinspires.ftc.teamcode.RoadRunner.drive.DriveConstants.MOTOR_VELO_PID;
-import static org.firstinspires.ftc.teamcode.RoadRunner.drive.DriveConstants.RUN_USING_ENCODER;
-import static org.firstinspires.ftc.teamcode.RoadRunner.drive.DriveConstants.kV;
+import static org.firstinspires.ftc.teamcode.roadRunner.drive.DriveConstants.MAX_ACCEL;
+import static org.firstinspires.ftc.teamcode.roadRunner.drive.DriveConstants.MAX_VEL;
+import static org.firstinspires.ftc.teamcode.roadRunner.drive.DriveConstants.MOTOR_VELO_PID;
+import static org.firstinspires.ftc.teamcode.roadRunner.drive.DriveConstants.RUN_USING_ENCODER;
+import static org.firstinspires.ftc.teamcode.roadRunner.drive.DriveConstants.kV;
 
 /*
  * This routine is designed to tune the PID coefficients used by the REV Expansion Hubs for closed-
@@ -50,7 +50,7 @@ import static org.firstinspires.ftc.teamcode.RoadRunner.drive.DriveConstants.kV;
  * Pressing A (on the Xbox and Logitech F310 gamepads, X on the PS4 Dualshock gamepad) will cede
  * control back to the tuning process.
  */
-@Disabled
+//@Disabled
 
 @Config
 @Autonomous(group = "drive")

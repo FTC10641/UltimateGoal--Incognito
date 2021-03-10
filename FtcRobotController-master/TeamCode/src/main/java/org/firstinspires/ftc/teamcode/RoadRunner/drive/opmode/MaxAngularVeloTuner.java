@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.RoadRunner.drive.opmode;
+package org.firstinspires.ftc.teamcode.roadRunner.drive.opmode;
 
 import com.acmerobotics.dashboard.config.Config;
 import com.acmerobotics.roadrunner.geometry.Pose2d;
@@ -8,7 +8,7 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
-import org.firstinspires.ftc.teamcode.RoadRunner.drive.SampleMecanumDrive;
+import org.firstinspires.ftc.teamcode.roadRunner.drive.SampleMecanumDrive;
 
 import java.util.Objects;
 
@@ -19,7 +19,7 @@ import java.util.Objects;
  * <p>
  * Further fine tuning of MAX_ANG_VEL may be desired.
  */
-@Disabled
+//@Disabled
 
 @Config
 @Autonomous(group = "drive")
