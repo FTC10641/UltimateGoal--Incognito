@@ -25,13 +25,6 @@ public class TestT265 extends OpMode {
             slamra = new T265Camera(new Transform2d(new Translation2d(0,0), new Rotation2d(0)), 0, hardwareMap.appContext);
             RobotLog.d("Created Camera");
         }
-//        else
-//        {
-//            Pose2d pose = slamra.getLastReceivedCameraUpdate().pose;
-//            slamra.setPose(new Pose2d(-pose.getTranslation().getX(),-pose.getTranslation().getX(),-pose.getRotation().getDegrees()));
-//            RobotLog.d("set SLAMRA pose to 0");
-//        }
-
     }
 
     @Override
