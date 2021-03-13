@@ -3,12 +3,10 @@ package org.firstinspires.ftc.teamcode.Autonomous;
 
 import com.qualcomm.hardware.rev.RevBlinkinLedDriver;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
-import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 
-import org.firstinspires.ftc.teamcode.Autonomous.GoodOneBlue;
 import org.firstinspires.ftc.teamcode.SubSystems.*;
 
 /*
@@ -17,14 +15,16 @@ import org.firstinspires.ftc.teamcode.SubSystems.*;
 + Orange is just info
 */
 
-/*+ Will Hopefully be used for League Meet For
-  + Will be a double wobble with at least 3 rings shot in high goal, 4 rings shot in high with Path B
-  + 71 points with Path A and C, 83 with Path B, 104 with path C
+/*
+ + Path A: Double Wobble, 3 high goals, and park. 71 pts
+ + Path B: Double Wobble, 4 high goals, and park. 83 pts
+ + Path C: One Wobble, 7 high goals, and park. 104 pts
  */
+
 
 @Autonomous(name = "Red Auto")
 
-public class NewRedAuto extends OpMode {
+public class FullRed extends OpMode {
     HardWareMap robot = new HardWareMap();
     Vision vision = new Vision();
     ElapsedTime time = new ElapsedTime();

@@ -16,14 +16,15 @@ import org.firstinspires.ftc.teamcode.SubSystems.*;
 + Orange is just info
 */
 
-/*+ Will Hopefully be used for League Meet For
-  + Will be a double wobble with at least 3 rings shot in high goal, 4 rings shot in high with Path B
-  + 71 points with Path A and C, 83 with Path B, 104 with path C
+/*
+ + Path A: Double Wobble, 3 high goals, and park. 71 pts
+ + Path B: Double Wobble, 4 high goals, and park. 83 pts
+ + Path C: One Wobble, 7 high goals, and park. 104 pts
  */
 
 @Autonomous(name = "Blue Auto")
 
-public class GoodOneBlue extends OpMode {
+public class FullBlue extends OpMode {
     HardWareMap robot = new HardWareMap();
     Vision vision = new Vision();
     ElapsedTime time = new ElapsedTime();
