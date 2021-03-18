@@ -192,10 +192,10 @@ public class BlueTeleOp extends LinearOpMode {
         double drive = gamepad1.left_stick_y;
         double turn = -gamepad1.right_stick_x;
 
-        frontLeftPower = Range.clip(drive + turn - strafe, -9.0, 9.0);
-        backLeftPower = Range.clip(drive + turn + strafe, -9.0, 9.0);
-        backRightPower = Range.clip(drive - turn - strafe, -9.0, 9.0);
-        frontRightPower = Range.clip(drive - turn + strafe, -9.0, 9.0);
+        frontLeftPower = Range.clip(drive + turn - strafe, -1, 1);
+        backLeftPower = Range.clip(drive + turn + strafe, -1, 1);
+        backRightPower = Range.clip(drive - turn - strafe, -1, 1);
+        frontRightPower = Range.clip(drive - turn + strafe, -1, 1);
 
         double liftPower;
         liftPower = Range.clip(-gamepad2.right_trigger + gamepad2.left_trigger,-1.0,1.0);

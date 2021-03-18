@@ -191,6 +191,32 @@ public class TeleTest extends LinearOpMode {
             }
 
 
+            double frontRightPower;
+            double backRightPower;
+            double frontLeftPower;
+            double backLeftPower;
+
+            double strafe = gamepad1.right_stick_x;
+            double drive = gamepad1.left_stick_y;
+
+            frontLeftPower = Range.clip(drive - strafe, -1, 1);
+            backLeftPower = Range.clip(drive + strafe, -1, 1);
+            backRightPower = Range.clip(drive - strafe, -1, 1);
+            frontRightPower = Range.clip(drive + strafe, -1, 1);
+
+            if (gamepad2.dpad_down){
+                robot.frontLeft.setPower(-frontLeftPower/2);
+                robot.backLeft.setPower(-backLeftPower/2);
+                robot.frontRight.setPower(-frontRightPower/2);
+                robot.backRight.setPower(-backRightPower/2);
+            }
+            else{
+                robot.frontLeft.setPower(-frontLeftPower);
+                robot.backLeft.setPower(-backLeftPower);
+                robot.frontRight.setPower(-frontRightPower);
+                robot.backRight.setPower(-backRightPower);
+            }
+
             double liftPower;
             liftPower = Range.clip(-gamepad2.right_trigger + gamepad2.left_trigger,-1.0,1.0);
 
@@ -222,6 +248,11 @@ public class TeleTest extends LinearOpMode {
 //
 //            telemetry.addData("Shooter1 Velocity = ",(robot.shootyMcShootShoot.getVelocity()) / 28 *60);
 //            telemetry.addData("Shooter2 Velocity = ", (robot.shooter2.getVelocity()) / 28 *60);
+            telemetry.addData("LeftF Tick", robot.frontLeft.getCurrentPosition());
+            telemetry.addData("LeftB Tick", robot.backLeft.getCurrentPosition());
+            telemetry.addData("RightB Tick", robot.backRight.getCurrentPosition());
+            telemetry.addData("RightF Tick", robot.frontRight.getCurrentPosition());
+
             telemetry.addData("Current Tick", currentTick); //- Shooter Encoder val
             telemetry.addData("Current Tick 2", currentTick2); //- Shooter2 Encoder val
             telemetry.addData("Shooter Power = ", shooterPower);//- Returns Current Power for shooter motor one
