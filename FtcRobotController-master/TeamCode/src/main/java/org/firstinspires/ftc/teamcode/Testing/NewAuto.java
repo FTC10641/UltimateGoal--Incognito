@@ -3,6 +3,7 @@ package org.firstinspires.ftc.teamcode.Testing;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 import com.qualcomm.robotcore.util.ReadWriteFile;
@@ -15,10 +16,10 @@ import java.io.File;
 
 import static java.lang.String.valueOf;
 
-@Disabled
+//@Disabled
 @Autonomous(name = "NewAuto")
 
-public class NewAuto extends LinearOpMode {
+public class NewAuto extends OpMode {
     HardWareMap robot = new HardWareMap();
     Vision vision = new Vision();
     ElapsedTime time = new ElapsedTime();
@@ -44,8 +45,9 @@ public class NewAuto extends LinearOpMode {
     State state;
 
 
+
     @Override
-    public void runOpMode() throws InterruptedException {
+    public void init() {
         robot.initHardware(hardwareMap);
         vision.initVision(hardwareMap);
         sensors.initSensors(hardwareMap);
@@ -54,7 +56,7 @@ public class NewAuto extends LinearOpMode {
         robot.hopper.setPosition(robot.SHOOT_POSITION);
 
         time.reset();
-        state = State.DriveToTarget;
+        state = State.Turn;
 
         if (vision.pipeline.position == Vision.SkystoneDeterminationPipeline.RingPosition.FOUR) {
             positionC = true;
@@ -64,16 +66,18 @@ public class NewAuto extends LinearOpMode {
             positionA = true;
         }
 
-        waitForStart();
-        while (opModeIsActive()) {
-            double CurrentTime = time.time();
-            telemetry.addData("time", CurrentTime);
-            telemetry.addData("ZAngle", sensors.getZAngle());
-            telemetry.addData("Current State", state.toString());
-            telemetry.addData("Current Position", vision.pipeline.position);
-            telemetry.addData("Shooter RPM = ", currentRPM);
-            telemetry.addData("Shooter RPM2 = ", currentRPM2);
-            telemetry.update();
+    }
+
+    @Override
+    public void loop() {
+        double CurrentTime = time.time();
+        telemetry.addData("time", CurrentTime);
+        telemetry.addData("ZAngle", sensors.getZAngle());
+        telemetry.addData("Current State", state.toString());
+        telemetry.addData("Current Position", vision.pipeline.position);
+        telemetry.addData("Shooter RPM = ", currentRPM);
+        telemetry.addData("Shooter RPM2 = ", currentRPM2);
+        telemetry.update();
 
 //            currentTick = robot.shootyMcShootShoot.getCurrentPosition();
 //            currentTick2 = robot.shooter2.getCurrentPosition();
@@ -90,29 +94,28 @@ public class NewAuto extends LinearOpMode {
 //            robot.shootyMcShootShoot.setPower(shooterPower);
 //            robot.shooter2.setPower(shooterPower2);
 
-            switch (state) {
+        switch (state) {
 
-                case DriveToTarget:
-                    method.Forward(.5,10 );
-                    if (method.DriveDone(10)){
-                        state = State.Turn;
+            case DriveToTarget:
+                method.Forward(.5,10 );
+                if (method.DriveDone(10)){
+                    state = State.Turn;
                 }
-                    break;
+                break;
 
-                case Turn:
-                    method.TurnAbsolute(10, sensors.getZAngle(), .75, -.75);
-                    if (method.TurnDone(10)){
-                        state = State.Stop;
-                    }
-                    break;
+            case Turn:
+                method.TurnAbsolute(90, sensors.getZAngle(), -.75, .75);
+                if (method.TurnDone(90)){
+                    state = State.Stop;
+                }
+                break;
 
-                case Stop:
-                    Reset();
-                    method.Death();
-                    //-will write the current ZAngle to a file that will be used in TeleOp
-                    ReadWriteFile.writeFile(autonomousGyroFile, valueOf(sensors.getZAngle()));
-                    break;
-            }
+            case Stop:
+                //-will write the current ZAngle to a file that will be used in TeleOp
+                ReadWriteFile.writeFile(autonomousGyroFile, valueOf(sensors.getZAngle()));
+                Reset();
+                method.Death();
+                break;
         }
     }
     private void Reset () {

@@ -38,7 +38,6 @@ public class Methods {
         return (desiredSpeed * robot.COUNTS_PER_ROTATION / 60);
     }
 
-
     public void initMethods(HardwareMap ahwMap) {
         hwMap = ahwMap;
         sensors.initSensors(ahwMap);

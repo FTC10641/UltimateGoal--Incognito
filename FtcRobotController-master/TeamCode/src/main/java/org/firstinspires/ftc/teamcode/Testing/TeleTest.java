@@ -37,6 +37,7 @@ public class TeleTest extends LinearOpMode {
     private double shooterPower, shooterPower2;
     private double currentTime;
     private double lastTime;
+    private boolean flagged = false;
 
     File autonomousGyroFile = AppUtil.getInstance().getSettingsFile("autonomousGyroFile.txt");
     double autoZValue = 0;
@@ -62,7 +63,7 @@ public class TeleTest extends LinearOpMode {
         while (opModeIsActive()) {
 //            robot.intakeServo.setPosition(0); //dropping the intake arm
 
-            if (gamepad2.dpad_down){
+            if (gamepad2.dpad_right){
                 robot.intakeServo.setPosition(0);
             }
 
@@ -113,21 +114,6 @@ public class TeleTest extends LinearOpMode {
                 robot.shootyMcShootShoot.setPower(0);
             }
 
-//            if (gamepad2.dpad_right) {
-//                shooter = true;
-//                shooter2 = true;
-//            } else if (gamepad2.triangle) {
-//                shooter = false;
-//                shooter2 = false;
-//                endGameShoot = false;
-//                endGameShoot2 = false;
-//            }
-//            else if (gamepad2.touchpad){
-//                shooter = false;
-//                shooter2 = false;
-//                endGameShoot= true;
-//                endGameShoot2 = true;
-//            }
             currentTick = robot.shootyMcShootShoot.getCurrentPosition();
             currentTick2 = robot.shooter2.getCurrentPosition();
             currentTime = runtime.time();
@@ -136,27 +122,6 @@ public class TeleTest extends LinearOpMode {
             lastTick = currentTick;
             lastTick2 = currentTick2;
             lastTime = currentTime;
-//            if (shooter) {
-//                shooterPower = method.shooterPower(shooterPower, currentRPM, 3750);
-//                robot.blinkinLedDriver.setPattern(defaultPattern);
-//            } else if(endGameShoot){
-//                robot.blinkinLedDriver.setPattern(endGameRPM);
-//                shooterPower = method.shooterPower(shooterPower, currentRPM, 3500);
-//            }
-//            else {
-//                shooterPower = 0;
-//            }
-//
-//            if (shooter2) {
-//                shooterPower2 = method.shooterPower(shooterPower2, currentRPM2, 3500);
-//            } else if (endGameShoot2){
-//                shooterPower2 = method.shooterPower(shooterPower, currentRPM, 3250);
-//            }
-//            else {
-//                shooterPower2 = 0;
-//            }
-//            robot.shootyMcShootShoot.setPower(shooterPower);
-//            robot.shooter2.setPower(shooterPower2);
 
 
             if (gamepad1.left_bumper){ //turns on intake motor and sets hoppers to load position
@@ -175,10 +140,10 @@ public class TeleTest extends LinearOpMode {
 
 
             /* These are for testing*/
-            if(gamepad2.dpad_down){
+            if(gamepad1.dpad_down){
                 robot.hopper.setPosition(0);//- Intake position
             }
-            else if(gamepad2.dpad_left){
+            else if(gamepad1.dpad_left){
                 robot.hopper.setPosition(.49);//- Shoot position
             }
 
@@ -191,31 +156,29 @@ public class TeleTest extends LinearOpMode {
             }
 
 
+
             double frontRightPower;
             double backRightPower;
             double frontLeftPower;
             double backLeftPower;
 
-            double strafe = gamepad1.right_stick_x;
+//-         This uses basic math to combine motions and is easier to drive straight.
+            double strafe = gamepad1.left_stick_x;
             double drive = gamepad1.left_stick_y;
+            double turn = gamepad1.right_stick_x;
 
-            frontLeftPower = Range.clip(drive - strafe, -1, 1);
-            backLeftPower = Range.clip(drive + strafe, -1, 1);
-            backRightPower = Range.clip(drive - strafe, -1, 1);
-            frontRightPower = Range.clip(drive + strafe, -1, 1);
+            frontLeftPower = Range.clip(drive - turn - strafe, -1, 1);
+            backLeftPower = Range.clip(drive - turn + strafe, -1, 1);
+            backRightPower = Range.clip(drive + turn - strafe, -1, 1);
+            frontRightPower = Range.clip(drive + turn + strafe, -1, 1);
 
-            if (gamepad2.dpad_down){
-                robot.frontLeft.setPower(-frontLeftPower/2);
-                robot.backLeft.setPower(-backLeftPower/2);
-                robot.frontRight.setPower(-frontRightPower/2);
-                robot.backRight.setPower(-backRightPower/2);
-            }
-            else{
-                robot.frontLeft.setPower(-frontLeftPower);
-                robot.backLeft.setPower(-backLeftPower);
-                robot.frontRight.setPower(-frontRightPower);
-                robot.backRight.setPower(-backRightPower);
-            }
+//-         Drive Controls, Adds a AntiTurbo Button else it will drive full speed
+            robot.frontLeft.setPower(gamepad2.dpad_down ? frontLeftPower/2 : frontLeftPower);
+            robot.backLeft.setPower(gamepad2.dpad_down ? backLeftPower/2 : backLeftPower);
+            robot.frontRight.setPower(gamepad2.dpad_down ? frontRightPower/2 : frontRightPower);
+            robot.backRight.setPower(gamepad2.dpad_down ? backRightPower/2 : backRightPower);
+
+
 
             double liftPower;
             liftPower = Range.clip(-gamepad2.right_trigger + gamepad2.left_trigger,-1.0,1.0);
@@ -229,7 +192,6 @@ public class TeleTest extends LinearOpMode {
             else {
                 robot.wobbleLift.setPower(0);
             }
-
 
             telemetry.addData("AutoZValue", autoZValue); //- Will return the ZValue from the end of autonomous
 
