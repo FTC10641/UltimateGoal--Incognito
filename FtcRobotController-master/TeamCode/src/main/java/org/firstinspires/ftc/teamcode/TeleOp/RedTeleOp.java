@@ -70,7 +70,7 @@ public class RedTeleOp extends LinearOpMode {
                 autoZValue = 0;
             }
 
-            if(gamepad2.dpad_down){
+            if(gamepad2.dpad_right){
                 robot.upperSupper.setPosition(0);
             } else{
                 robot.upperSupper.setPosition(1);
@@ -126,21 +126,6 @@ public class RedTeleOp extends LinearOpMode {
                 method.shooterSpeed(0,0);
                 robot.blinkinLedDriver.setPattern(atRest);
             }
-//        if (gamepad2.square) {
-//            shooter = true;
-//            shooter2 = true;
-//        } else if (gamepad2.triangle) {
-//            shooter = false;
-//            shooter2 = false;
-//            endGameShoot = false;
-//            endGameShoot2 = false;
-//        }
-//        else if (gamepad2.touchpad){
-//            shooter = false;
-//            shooter2 = false;
-//            endGameShoot= true;
-//            endGameShoot2 = true;
-//        }
             currentTick = robot.shootyMcShootShoot.getCurrentPosition();
             currentTick2 = robot.shooter2.getCurrentPosition();
             currentTime = runtime.time();
@@ -149,28 +134,7 @@ public class RedTeleOp extends LinearOpMode {
             lastTick = currentTick;
             lastTick2 = currentTick2;
             lastTime = currentTime;
-//        if (shooter) {
-//            shooterPower = method.shooterPower(shooterPower, currentRPM, 3600);
-//            robot.blinkinLedDriver.setPattern(defaultPattern);
-//        } else if(endGameShoot){
-//            robot.blinkinLedDriver.setPattern(endGameRPM);
-//            shooterPower = method.shooterPower(shooterPower, currentRPM, 3300);
-//        }
-//        else {
-//            shooterPower = 0;
-//        }
 
-//-     Setting the RPM for the Second Shooter Motor
-//        if (shooter2) {
-//            shooterPower2 = method.shooterPower(shooterPower2, currentRPM2, 3500);
-//        } else if (endGameShoot2){
-//            shooterPower2 = method.shooterPower(shooterPower2, currentRPM2, 3200);
-//        }
-//        else {
-//            shooterPower2 = 0;
-//        }
-//        robot.shootyMcShootShoot.setPower(shooterPower);
-//        robot.shooter2.setPower(shooterPower2);
 
             if (gamepad1.left_bumper){
                 robot.intake.setPower(1);
@@ -197,6 +161,11 @@ public class RedTeleOp extends LinearOpMode {
             backRightPower = Range.clip(drive - turn - strafe, -1, 1);
             frontRightPower = Range.clip(drive - turn + strafe, -1, 1);
 
+            robot.frontLeft.setPower(gamepad2.dpad_down ? frontLeftPower/2 : frontLeftPower);
+            robot.backLeft.setPower(gamepad2.dpad_down ? backLeftPower/2 : backLeftPower);
+            robot.frontRight.setPower(gamepad2.dpad_down ? frontRightPower/2 : frontRightPower);
+            robot.backRight.setPower(gamepad2.dpad_down ? backRightPower/2 : backRightPower);
+
             double liftPower;
             liftPower = Range.clip(-gamepad2.right_trigger + gamepad2.left_trigger,-1.0,1.0);
 
@@ -208,20 +177,6 @@ public class RedTeleOp extends LinearOpMode {
             }
             else {
                 robot.wobbleLift.setPower(0);
-            }
-
-
-            if (gamepad2.dpad_down){
-                robot.frontLeft.setPower(-frontLeftPower/2);
-                robot.backLeft.setPower(-backLeftPower/2);
-                robot.frontRight.setPower(-frontRightPower/2);
-                robot.backRight.setPower(-backRightPower/2);
-            }
-            else{
-                robot.frontLeft.setPower(-frontLeftPower);
-                robot.backLeft.setPower(-backLeftPower);
-                robot.frontRight.setPower(-frontRightPower);
-                robot.backRight.setPower(-backRightPower);
             }
 
             if (gamepad2.cross){

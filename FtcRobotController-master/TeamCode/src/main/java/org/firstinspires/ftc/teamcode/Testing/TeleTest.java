@@ -165,12 +165,12 @@ public class TeleTest extends LinearOpMode {
 //-         This uses basic math to combine motions and is easier to drive straight.
             double strafe = gamepad1.left_stick_x;
             double drive = gamepad1.left_stick_y;
-            double turn = gamepad1.right_stick_x;
+            double turn = -gamepad1.right_stick_x;
 
-            frontLeftPower = Range.clip(drive - turn - strafe, -1, 1);
-            backLeftPower = Range.clip(drive - turn + strafe, -1, 1);
-            backRightPower = Range.clip(drive + turn - strafe, -1, 1);
-            frontRightPower = Range.clip(drive + turn + strafe, -1, 1);
+            frontLeftPower = Range.clip(drive + turn - strafe, -1, 1);
+            backLeftPower = Range.clip(drive + turn + strafe, -1, 1);
+            backRightPower = Range.clip(drive - turn - strafe, -1, 1);
+            frontRightPower = Range.clip(drive - turn + strafe, -1, 1);
 
 //-         Drive Controls, Adds a AntiTurbo Button else it will drive full speed
             robot.frontLeft.setPower(gamepad2.dpad_down ? frontLeftPower/2 : frontLeftPower);
