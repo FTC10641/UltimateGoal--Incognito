@@ -12,15 +12,15 @@ import com.qualcomm.robotcore.hardware.Servo;
 public class HardWareMap{
 
         //setting up variables for each motor
-        public DcMotor backRight, backLeft, frontRight, frontLeft = null; //drive motors
+        public DcMotor backRight=null, backLeft=null, frontRight=null, frontLeft = null; //drive motors
 
-        public DcMotorEx shootyMcShootShoot, shooter2 = null; //shooting motors
+        public DcMotorEx shootyMcShootShoot=null, shooter2 = null; //shooting motors
 
-        public DcMotor intake;//intake motor
+        public DcMotor intake=null;//intake motor
 
         public DcMotor horizontal; //odometry wheel
 
-        public DcMotor wobbleLift;
+        public DcMotor wobbleLift=null;
 
 
         public Servo indexer;//indexer that is used to push the ring out of the hopper into the shooter
