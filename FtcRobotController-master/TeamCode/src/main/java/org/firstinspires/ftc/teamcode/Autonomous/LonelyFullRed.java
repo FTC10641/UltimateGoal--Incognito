@@ -22,9 +22,9 @@ import org.firstinspires.ftc.teamcode.SubSystems.*;
  */
 
 
-@Autonomous(name = "Red Auto")
+@Autonomous(name = "Lonely Red")
 
-public class FullRed extends OpMode {
+public class LonelyFullRed extends OpMode {
     HardWareMap robot = new HardWareMap();
     Vision vision = new Vision();
     ElapsedTime time = new ElapsedTime();
@@ -146,16 +146,16 @@ public class FullRed extends OpMode {
 //-         Start of PATH A part one(No rings)
             case PathA:
                 robot.wobbleGrab.setPosition(robot.CLOSED);
-                method.Reverse(.5, 40);
-                if (method.DriveDone(40)) {
+                method.Reverse(.5, 42);
+                if (method.DriveDone(42)) {
                     Reset();
                     state = State.Aim;
                 }
                 break;
 
             case ForwardA:
-                method.Forward(.5, 26);
-                if (method.DriveDone(26)) {
+                method.Forward(.5, 25);
+                if (method.DriveDone(25)) {
                     Reset();
                     state = State.TurnA;
                 }
@@ -170,8 +170,8 @@ public class FullRed extends OpMode {
                 break;
 
             case DeliverWobA:
-                method.Reverse(.5, 15);
-                if (method.DriveDone(15)) {
+                method.Reverse(.5, 22);
+                if (method.DriveDone(22)) {
                     robot.wobbleGrab.setPosition(robot.OPEN);
                     method.sleep(500);
                     Reset();
@@ -180,8 +180,8 @@ public class FullRed extends OpMode {
                 break;
 
             case PullOutA:
-                method.Forward(.5,3);
-                if (method.DriveDone(3)){
+                method.Forward(.5,25);
+                if (method.DriveDone(25)){
                     Reset();
                     state = State.Turn2A;
                 }
@@ -190,92 +190,6 @@ public class FullRed extends OpMode {
             case Turn2A:
                 method.TurnAbsolute(0, sensors.getZAngle(), -.65,.65);
                 if (method.TurnDone(0) && CurrentTime >= 2){
-                    Reset();
-                    state = State.TowardWobA;
-                }
-                break;
-
-            case TowardWobA:
-                method.Reverse(.5, 46);
-                if (method.DriveDone(46)){
-                    Reset();
-                    state = State.Turn3A;
-                }
-                break;
-
-            case Turn3A:
-                method.TurnAbsolute(-2, sensors.getZAngle(), -.65,.65);
-                if (method.TurnDone(-2) && CurrentTime >= 2){
-                    Reset();
-                    state = State.PickUpWobA;
-                }
-                break;
-
-            case PickUpWobA:
-                method.Reverse(.2, 12);
-                if (method.DriveDone(12)){
-                    robot.wobbleGrab.setPosition(robot.CLOSED);
-                    method.sleep(400);
-                    Reset();
-                    state = State.Turn4A;
-                }
-                break;
-
-            case Turn4A:
-                method.TurnAbsolute(0, sensors.getZAngle(), -.65,.65);
-                if (method.TurnDone(0) && CurrentTime >= 2){
-                    Reset();
-                    state = State.WobbeYoinkA;
-                }
-                break;
-
-            case WobbeYoinkA:
-                method.Forward(.5, 47);
-                if (method.DriveDone(47)){
-                    Reset();
-                    state = State.TurnToDeliverA;
-                }
-                break;
-
-            case TurnToDeliverA:
-                method.TurnAbsolute(-90, sensors.getZAngle(), -.65,.65);
-                if (method.TurnDone(-90) && CurrentTime >= 2){
-                    robot.wobbleGrab.setPosition(robot.OPEN);
-                    method.sleep(400);
-                    Reset();
-                    state = State.PullOut2A;
-                }
-                break;
-
-//            case DeliverWob2A:
-//                method.Reverse(.5, 4);
-//                if (method.DriveDone(4)){
-//                    robot.wobbleGrab.setPosition(robot.OPEN);
-//                    method.sleep(500);
-//                    Reset();
-//                    state = State.PullOut2A;
-//                }
-//                break;
-
-            case PullOut2A:
-                method.Forward(.5,26);
-                if (method.DriveDone(26)){
-                    Reset();
-                    state = State.StraightenA;
-                }
-                break;
-
-            case StraightenA:
-                method.TurnAbsolute(0, sensors.getZAngle(), -.65,.65);
-                if (method.TurnDone(0) && CurrentTime >= 2){
-                    Reset();
-                    state = State.ParkA;
-                }
-                break;
-
-            case ParkA:
-                method.Forward(.5,8);
-                if (method.DriveDone(8)){
                     Reset();
                     state = State.Stop;
                 }
@@ -456,7 +370,7 @@ public class FullRed extends OpMode {
                 method.Reverse(.5, 10);
                 robot.wobbleGrab.setPosition(robot.CLOSED);
                 method.sleep(400);
-                if (method.StrafeDone(10)){
+                if (method.DriveDone(10)){
                     Reset();
                     state = State.StraightenC;
                 }
@@ -614,9 +528,9 @@ public class FullRed extends OpMode {
 
 //-         these cases are for all 3 paths
             case Aim:
-                method.TurnAbsolute(3, sensors.getZAngle(), -.65,.65);
+                method.TurnAbsolute(10, sensors.getZAngle(), -.65,.65);
                 i=0;
-                if (method.TurnDone(3) && CurrentTime >= 2){
+                if (method.TurnDone(10) && CurrentTime >= 2){
                     Reset();
                     robot.hopper.setPosition(robot.SHOOT_POSITION);
                     method.sleep(400);

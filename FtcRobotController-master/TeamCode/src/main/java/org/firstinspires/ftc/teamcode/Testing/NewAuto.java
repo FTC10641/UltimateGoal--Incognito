@@ -16,7 +16,7 @@ import java.io.File;
 
 import static java.lang.String.valueOf;
 
-//@Disabled
+@Disabled
 @Autonomous(name = "NewAuto")
 
 public class NewAuto extends OpMode {

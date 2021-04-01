@@ -22,9 +22,9 @@ import org.firstinspires.ftc.teamcode.SubSystems.*;
  + Path C: One Wobble, 7 high goals, and park. 104 pts
  */
 
-@Autonomous(name = "Blue Auto")
+@Autonomous(name = "Lonely Blue")
 
-public class FullBlue extends OpMode {
+public class LonelyFullBlue extends OpMode {
     HardWareMap robot = new HardWareMap();
     Vision vision = new Vision();
     ElapsedTime time = new ElapsedTime();
