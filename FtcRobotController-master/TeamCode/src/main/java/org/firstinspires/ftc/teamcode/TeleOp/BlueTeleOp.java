@@ -116,11 +116,11 @@ public class BlueTeleOp extends LinearOpMode {
                 shooter = false;
             }
             if (shooter){
-                method.shooterSpeed(3700, 3500);
+                method.shooterSpeed(4500, 4300);
                 robot.blinkinLedDriver.setPattern(teleOpRPM);
             } else if (endGameShoot){
                 robot.blinkinLedDriver.setPattern(endGameRPM);
-                method.shooterSpeed(3300, 3200);
+                method.shooterSpeed(4000, 3900);
             }
             else {
                 method.shooterSpeed(0,0);
@@ -153,9 +153,9 @@ public class BlueTeleOp extends LinearOpMode {
         double frontLeftPower;
         double backLeftPower;
 
-        double strafe = gamepad1.left_stick_x;
-        double drive = gamepad1.left_stick_y;
-        double turn = -gamepad1.right_stick_x;
+        double strafe = -gamepad1.left_stick_x;
+        double drive = -gamepad1.left_stick_y;
+        double turn = gamepad1.right_stick_x*4/5;
 
         frontLeftPower = Range.clip(drive + turn - strafe, -1, 1);
         backLeftPower = Range.clip(drive + turn + strafe, -1, 1);

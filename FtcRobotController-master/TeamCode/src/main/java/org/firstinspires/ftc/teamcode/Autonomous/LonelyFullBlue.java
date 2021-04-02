@@ -10,6 +10,12 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.teamcode.SubSystems.*;
 
+/**TODO:
+ - Fix shoot angle for this class
+ - replicate AB blue for only one wobble
+ - replicate ABC from inside start
+ */
+
 /*
 ? Red is needs to be tested
 - Green is notes about the code
@@ -109,7 +115,7 @@ public class LonelyFullBlue extends OpMode {
         lastTick2 = currentTick2;
         lastTime = currentTime;
 
-        method.shooterSpeed(3700, 3500);
+        method.shooterSpeed(4400, 4200);
 
         switch (state) {
 

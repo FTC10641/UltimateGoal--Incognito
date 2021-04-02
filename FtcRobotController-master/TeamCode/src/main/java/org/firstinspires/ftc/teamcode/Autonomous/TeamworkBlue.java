@@ -10,9 +10,9 @@ import org.firstinspires.ftc.teamcode.SubSystems.Methods;
 import org.firstinspires.ftc.teamcode.SubSystems.Sensors;
 import org.firstinspires.ftc.teamcode.SubSystems.Vision;
 
-@Autonomous(name = "TeamworkRed")
+@Autonomous(name = "TeamworkBlue")
 
-public class TeamworkAuto extends OpMode {
+public class TeamworkBlue extends OpMode {
     HardWareMap robot = new HardWareMap();
     Vision vision = new Vision();
     ElapsedTime time = new ElapsedTime();
@@ -35,7 +35,7 @@ public class TeamworkAuto extends OpMode {
     ElapsedTime runtime = new ElapsedTime();
 
     enum State {
-        Vision, Aim, Shoot,  Stop,
+        Vision, Aim, Shoot,  Stop, Forward,
 
         PathA, TurnA, DeliverWobA,
         PullOutA, Turn2A, TowardWobA, PickUpWobA,
@@ -56,13 +56,10 @@ public class TeamworkAuto extends OpMode {
         PullOutC, FaceTargetC, TurnToParkC, Aim1C,
         Aim2B, FaceRingB, ForwardToDeliverB, TurnToGrabB,
         DeliverWob2B, DriveToGrabPt2B,
-        DriveToGrabPt1B, Straighten1A, ParkTurnC, Forward,
-
-
-
+        DriveToGrabPt1B, Straighten1A, FaceRingAgain, RingStreighten, AfterDropAngle, DropOff, dropAngle, ForwardToRings, PullOutC2, BackToOtherRings, TurnTOOtherRings, ForwardsIntoOtherRings, OverCorrection, AimAfterInteke, MoveToLastRing, ParkTurnC
     }
 
-     State state;
+    State state;
 
     @Override
     public void init() {
@@ -108,7 +105,7 @@ public class TeamworkAuto extends OpMode {
         lastTick2 = currentTick2;
         lastTime = currentTime;
 
-        method.shooterSpeed(3700, 3500);
+        method.shooterSpeed(4400, 4200);
 
         switch (state) {
 
@@ -175,8 +172,8 @@ public class TeamworkAuto extends OpMode {
                 break;
 
             case PullOutA:
-                method.Forward(.75,28);
-                if (method.DriveDone(28)){
+                method.Forward(.75,4);
+                if (method.DriveDone(4)){
                     Reset();
                     state =  State.Stop;
                 }
@@ -249,8 +246,8 @@ public class TeamworkAuto extends OpMode {
 
             case TurnToGrabB:
                 robot.intake.setPower(1);
-                method.TurnAbsolute(52, sensors.getZAngle(), .75, .75);
-                if (method.TurnDone(52) && CurrentTime >= 2){
+                method.TurnAbsolute(55, sensors.getZAngle(), .75, .75);
+                if (method.TurnDone(55) && CurrentTime >= 2){
                     Reset();
                     state =  State.DriveToGrabPt1B;
                 }
@@ -270,24 +267,24 @@ public class TeamworkAuto extends OpMode {
             case AimB:
                 robot.intake.setPower(0);
                 robot.hopper.setPosition(robot.SHOOT_POSITION);
-                method.TurnAbsolute(0, sensors.getZAngle(), .75, .75);
-                if (method.TurnDone(0) && CurrentTime >= 2){
+                method.TurnAbsolute(-3, sensors.getZAngle(), .75, .75);
+                if (method.TurnDone(-3) && CurrentTime >= 2){
                     Reset();
                     state =  State.Shoot;
                 }
                 break;
 
             case StraightenB:
-                method.TurnAbsolute(-30, sensors.getZAngle(), .75, .75);
-                if (method.TurnDone(-30) && CurrentTime >= 2){
+                method.TurnAbsolute(0, sensors.getZAngle(), .75, .75);
+                if (method.TurnDone(0) && CurrentTime >= 2){
                     Reset();
                     state =  State.ParkB;
                 }
                 break;
 
             case ParkB:
-                method.Forward(.75, 35);
-                if (method.DriveDone(35)){
+                method.Forward(.5, 28);
+                if (method.DriveDone(28)){
                     Reset();
                     state =  State.Stop;
                 }
@@ -299,89 +296,99 @@ public class TeamworkAuto extends OpMode {
                 method.TurnAbsolute(0, sensors.getZAngle(), .75, .75);
                 if (method.TurnDone(0) && CurrentTime >= 1.5){
                     Reset();
-                    state =  State.ForwardToShootC;
+                    state =  State.ForwardToRings;
                 }
                 break;
 
-            case ForwardToShootC:
-                method.Forward(.5, 55);
-                if (method.DriveDone(55)){
+            case ForwardToRings:
+                method.Forward(.6, 60);
+                if (method.DriveDone(60)){
                     Reset();
-                    state =  State.Aim1C;
+                    state =  State.dropAngle;
                 }
                 break;
 
-            case Aim1C:
+            case dropAngle:
                 method.TurnAbsolute(-90, sensors.getZAngle(), .75, .75);
                 if (method.TurnDone(-90) && CurrentTime >= 1.5){
                     Reset();
-                    state =  State.IntakeRing1C;
+                    state =  State.DropOff;
                 }
                 break;
 
-            case IntakeRing1C:
-
-                method.Reverse(.5, 36);
-                if (method.DriveDone(36)) {
+            case DropOff:
+                method.Reverse(.6, 28);
+                if (method.DriveDone(28)) {
+                    robot.wobbleGrab.setPosition(robot.OPEN);
+                    method.sleep(400);
                     Reset();
-                    state =  State.AimC;
+                    state =  State.AfterDropAngle;
                 }
                 break;
 
-            case AimC:
+            case AfterDropAngle:
                 method.TurnAbsolute(-90, sensors.getZAngle(), .75, .75);
                 if (method.TurnDone(-90) && CurrentTime >= 1.5){
                     Reset();
-                    state =  State.Shoot;
+                    state =  State.PullOutC2;
                 }
                 break;
 
-            case BackUpC:
-                method.Forward(.5, 38);
-                if (method.DriveDone(38)){
+            case PullOutC2:
+                method.Forward(.65, 30);
+                if (method.DriveDone(30)){
                     Reset();
-                    state =  State.FaceRing2C;
+                    state =  State.RingStreighten;
                 }
                 break;
 
-            case FaceRing2C:
+            case RingStreighten:
                 method.TurnAbsolute(0, sensors.getZAngle(), .75, -.75);
                 if (method.TurnDone(0) && CurrentTime >= 1){
                     Reset();
-                    state =  State.IntakeRing3C;
+                    state =  State.BackToOtherRings;
                 }
                 break;
 
-            case IntakeRing3C:
+            case BackToOtherRings:
                 robot.hopper.setPosition(robot.INTAKE_POSITION);
                 robot.intakeServo.setPosition(0);
-                method.Reverse(.5,100);
-                if (method.DriveDone(100)){
+                method.Reverse(.65,95);
+                if (method.DriveDone(95)){
                     Reset();
-                    state =  State.Aim2C;
+                    state =  State.TurnTOOtherRings;
                 }
                 break;
 
-            case Aim2C:
-                method.TurnAbsolute(45, sensors.getZAngle(), .75, .75);
-                if (method.TurnDone(45) && CurrentTime >= 1.5){
+            case TurnTOOtherRings:
+                method.TurnAbsolute(50, sensors.getZAngle(), .75, .75);
+                if (method.TurnDone(50) && CurrentTime >= 1.5){
                     Reset();
-                    state =  State.ForwardToDeliverC;
+                    state =  State.ForwardsIntoOtherRings;
                 }
                 break;
 
-            case ForwardToDeliverC:
+            case ForwardsIntoOtherRings:
                 robot.intake.setPower(1);
-                method.Forward(.5, 24);
-                if(method.DriveDone(24)){
+                method.Forward(.40, 32);
+                if(method.DriveDone(32)){
                     Reset();
-                    state =  State.FaceTargetC;
+                    state =  State.AimAfterInteke;
                 }
                 break;
 
-            case FaceTargetC:
-                method.TurnAbsolute(-2, sensors.getZAngle(), .75, .75);
-                if (method.TurnDone(-2) && CurrentTime >= 1.5){
+//            case OverCorrection:
+//                robot.intake.setPower(-1);
+//                method.Reverse(.65, 3);
+//                if(method.DriveDone(3)){
+//                    Reset();
+//                    state =  State.AimAfterInteke;
+//                }
+//                break;
+
+            case AimAfterInteke:
+                method.TurnAbsolute(-4, sensors.getZAngle(), .75, .75);
+                if (method.TurnDone(-4) && CurrentTime >= 1.5){
                     robot.intake.setPower(0);
                     pathC = false;
                     shoot2C = true;
@@ -391,27 +398,26 @@ public class TeamworkAuto extends OpMode {
                 }
                 break;
 
-            case DeliverWobC:
-                robot.intake.setPower(-1);
-                method.Reverse(.5, 3);
-                if(method.DriveDone(3)){
+            case FaceRingAgain:
+                method.TurnAbsolute(52, sensors.getZAngle(), .75, .75);
+                if (method.TurnDone(52) && CurrentTime >= 1){
                     Reset();
-                    state =  State.PullOutC;
+                    state =  State.MoveToLastRing;
                 }
                 break;
 
-            case PullOutC:
+            case MoveToLastRing:
                 robot.intake.setPower(1);
-                method.Forward(.5, 10);
-                if(method.DriveDone(10)){
+                method.Forward(.5, 12);
+                if(method.DriveDone(12) && CurrentTime >= 1){
                     Reset();
                     state =  State.TurnToParkC;
                 }
                 break;
 
             case TurnToParkC:
-                method.TurnAbsolute(-3, sensors.getZAngle(), .75, .75);
-                if (method.TurnDone(-3) && CurrentTime >= 1.5){
+                method.TurnAbsolute(-8, sensors.getZAngle(), .75, .75);
+                if (method.TurnDone(-8) && CurrentTime >= 2){
                     robot.intake.setPower(0);
                     shoot2C = false;
                     shoot3C = true;
@@ -420,17 +426,9 @@ public class TeamworkAuto extends OpMode {
                 }
                 break;
 
-            case ParkTurnC:
-                method.TurnAbsolute(-45, sensors.getZAngle(), .75, .75);
-                if (method.TurnDone(-45) && CurrentTime >= 1.5){
-                    Reset();
-                    state =  State.Shoot;
-                }
-                break;
-
             case ParkC:
-                method.Reverse(.75, 45);
-                if (method.DriveDone(45)){
+                method.Forward(.75, 30);
+                if (method.DriveDone(30)){
                     Reset();
                     state =  State.Stop;
                 }
@@ -438,9 +436,9 @@ public class TeamworkAuto extends OpMode {
 
 //-         these cases are for all 3 paths
             case Aim:
-                method.TurnAbsolute(16, sensors.getZAngle(), -.65,.65);
+                method.TurnAbsolute(5, sensors.getZAngle(), -.65,.65);
                 i=0;
-                if (method.TurnDone(16) && CurrentTime >= 2){
+                if (method.TurnDone(5) && CurrentTime >= 2){
                     Reset();
                     robot.hopper.setPosition(robot.SHOOT_POSITION);
                     method.sleep(400);
@@ -473,16 +471,16 @@ public class TeamworkAuto extends OpMode {
                         i = 0;
                         Reset();
                         state =  State.StraightenC;
-                    } else if (i == 4 && shoot2C){
+                    } else if (i == 6 && shoot2C){
                         i = 0;
                         Reset();
                         robot.hopper.setPosition(robot.INTAKE_POSITION);
-                        state =  State.DeliverWobC;
+                        state =  State.FaceRingAgain;
                     } else if (i == 5 && shoot3C){
                         i = 0;
                         Reset();
                         robot.hopper.setPosition(robot.INTAKE_POSITION);
-                        state =  State.ParkTurnC;
+                        state =  State.ParkC;
                     }
                 }
                 break;

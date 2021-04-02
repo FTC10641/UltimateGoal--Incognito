@@ -78,11 +78,11 @@ public class RedTeleOp extends LinearOpMode {
 
 //-         Turns the robot at increments to easily score the powershots
             if (gamepad1.triangle && !turned){
-                method.PIDRotate(sensors.getZAngle()+5,.5);
+                method.PIDRotate(sensors.getZAngle()-5,.5);
                 turned = true;
             }
             else if(gamepad1.triangle && turned){
-                method.PIDRotate(sensors.getZAngle()+5, .5);
+                method.PIDRotate(sensors.getZAngle()-6, .5);
             }//end of endgame turning
             else if (gamepad1.right_bumper){
                 method.PIDRotate(0 - autoZValue,.5);
@@ -116,11 +116,11 @@ public class RedTeleOp extends LinearOpMode {
                 shooter = false;
             }
             if (shooter){
-                method.shooterSpeed(3700, 3500);
+                method.shooterSpeed(4500, 4300);
                 robot.blinkinLedDriver.setPattern(teleOpRPM);
             } else if (endGameShoot){
                 robot.blinkinLedDriver.setPattern(endGameRPM);
-                method.shooterSpeed(3300, 3200);
+                method.shooterSpeed(4000, 3900);
             }
             else {
                 method.shooterSpeed(0,0);
@@ -154,7 +154,7 @@ public class RedTeleOp extends LinearOpMode {
 
             double strafe = -gamepad1.left_stick_x;
             double drive = -gamepad1.left_stick_y;
-            double turn = gamepad1.right_stick_x;
+            double turn = gamepad1.right_stick_x*4/5;
 
             frontLeftPower = Range.clip(drive + turn - strafe, -1, 1);
             backLeftPower = Range.clip(drive + turn + strafe, -1, 1);
