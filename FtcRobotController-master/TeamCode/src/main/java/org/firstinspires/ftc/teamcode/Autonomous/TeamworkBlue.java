@@ -56,7 +56,10 @@ public class TeamworkBlue extends OpMode {
         PullOutC, FaceTargetC, TurnToParkC, Aim1C,
         Aim2B, FaceRingB, ForwardToDeliverB, TurnToGrabB,
         DeliverWob2B, DriveToGrabPt2B,
-        DriveToGrabPt1B, Straighten1A, FaceRingAgain, RingStreighten, AfterDropAngle, DropOff, dropAngle, ForwardToRings, PullOutC2, BackToOtherRings, TurnTOOtherRings, ForwardsIntoOtherRings, OverCorrection, AimAfterInteke, MoveToLastRing, ParkTurnC
+        DriveToGrabPt1B, Straighten1A, FaceRingAgain, RingStreighten,
+        AfterDropAngle, DropOff, dropAngle, ForwardToRings, PullOutC2,
+        BackToOtherRings, TurnTOOtherRings, ForwardsIntoOtherRings,
+        OverCorrection, AimAfterInteke, MoveToLastRing, ParkTurnC
     }
 
     State state;
@@ -105,7 +108,7 @@ public class TeamworkBlue extends OpMode {
         lastTick2 = currentTick2;
         lastTime = currentTime;
 
-        method.shooterSpeed(4400, 4200);
+        method.shooterSpeed(4600, 4400);
 
         switch (state) {
 
@@ -154,8 +157,8 @@ public class TeamworkBlue extends OpMode {
                 break;
 
             case TurnA:
-                method.TurnAbsolute(-90, sensors.getZAngle(), -.65,.65);
-                if (method.TurnDone(-90) && CurrentTime >= 2){
+                method.TurnAbsolute(90, sensors.getZAngle(), -.65,.65);
+                if (method.TurnDone(90) && CurrentTime >= 2){
                     Reset();
                     state =  State.DeliverWobA;
                 }
@@ -201,8 +204,8 @@ public class TeamworkBlue extends OpMode {
                 break;
 
             case Aim2B:
-                method.TurnAbsolute(-90, sensors.getZAngle(), .75, .75);
-                if (method.TurnDone(-90) && CurrentTime >= 2){
+                method.TurnAbsolute(90, sensors.getZAngle(), .75, .75);
+                if (method.TurnDone(90) && CurrentTime >= 2){
                     Reset();
                     state =  State.TurnToDeliverB;
                 }
@@ -246,8 +249,8 @@ public class TeamworkBlue extends OpMode {
 
             case TurnToGrabB:
                 robot.intake.setPower(1);
-                method.TurnAbsolute(55, sensors.getZAngle(), .75, .75);
-                if (method.TurnDone(55) && CurrentTime >= 2){
+                method.TurnAbsolute(-55, sensors.getZAngle(), .75, .75);
+                if (method.TurnDone(-55) && CurrentTime >= 2){
                     Reset();
                     state =  State.DriveToGrabPt1B;
                 }
@@ -267,8 +270,8 @@ public class TeamworkBlue extends OpMode {
             case AimB:
                 robot.intake.setPower(0);
                 robot.hopper.setPosition(robot.SHOOT_POSITION);
-                method.TurnAbsolute(-3, sensors.getZAngle(), .75, .75);
-                if (method.TurnDone(-3) && CurrentTime >= 2){
+                method.TurnAbsolute(-4, sensors.getZAngle(), .75, .75);
+                if (method.TurnDone(-4) && CurrentTime >= 2){
                     Reset();
                     state =  State.Shoot;
                 }
@@ -309,8 +312,8 @@ public class TeamworkBlue extends OpMode {
                 break;
 
             case dropAngle:
-                method.TurnAbsolute(-90, sensors.getZAngle(), .75, .75);
-                if (method.TurnDone(-90) && CurrentTime >= 1.5){
+                method.TurnAbsolute(90, sensors.getZAngle(), .75, .75);
+                if (method.TurnDone(90) && CurrentTime >= 1.5){
                     Reset();
                     state =  State.DropOff;
                 }
@@ -327,8 +330,8 @@ public class TeamworkBlue extends OpMode {
                 break;
 
             case AfterDropAngle:
-                method.TurnAbsolute(-90, sensors.getZAngle(), .75, .75);
-                if (method.TurnDone(-90) && CurrentTime >= 1.5){
+                method.TurnAbsolute(90, sensors.getZAngle(), .75, .75);
+                if (method.TurnDone(90) && CurrentTime >= 1.5){
                     Reset();
                     state =  State.PullOutC2;
                 }
@@ -361,8 +364,8 @@ public class TeamworkBlue extends OpMode {
                 break;
 
             case TurnTOOtherRings:
-                method.TurnAbsolute(50, sensors.getZAngle(), .75, .75);
-                if (method.TurnDone(50) && CurrentTime >= 1.5){
+                method.TurnAbsolute(-46, sensors.getZAngle(), .75, .75);
+                if (method.TurnDone(-46) && CurrentTime >= 1.5){
                     Reset();
                     state =  State.ForwardsIntoOtherRings;
                 }
@@ -387,8 +390,8 @@ public class TeamworkBlue extends OpMode {
 //                break;
 
             case AimAfterInteke:
-                method.TurnAbsolute(-4, sensors.getZAngle(), .75, .75);
-                if (method.TurnDone(-4) && CurrentTime >= 1.5){
+                method.TurnAbsolute(4, sensors.getZAngle(), .75, .75);
+                if (method.TurnDone(4) && CurrentTime >= 1.5){
                     robot.intake.setPower(0);
                     pathC = false;
                     shoot2C = true;
@@ -399,8 +402,8 @@ public class TeamworkBlue extends OpMode {
                 break;
 
             case FaceRingAgain:
-                method.TurnAbsolute(52, sensors.getZAngle(), .75, .75);
-                if (method.TurnDone(52) && CurrentTime >= 1){
+                method.TurnAbsolute(-48, sensors.getZAngle(), .75, .75);
+                if (method.TurnDone(-48) && CurrentTime >= 1){
                     Reset();
                     state =  State.MoveToLastRing;
                 }
@@ -416,8 +419,8 @@ public class TeamworkBlue extends OpMode {
                 break;
 
             case TurnToParkC:
-                method.TurnAbsolute(-8, sensors.getZAngle(), .75, .75);
-                if (method.TurnDone(-8) && CurrentTime >= 2){
+                method.TurnAbsolute(8, sensors.getZAngle(), .75, .75);
+                if (method.TurnDone(8) && CurrentTime >= 2){
                     robot.intake.setPower(0);
                     shoot2C = false;
                     shoot3C = true;
@@ -436,16 +439,16 @@ public class TeamworkBlue extends OpMode {
 
 //-         these cases are for all 3 paths
             case Aim:
-                method.TurnAbsolute(5, sensors.getZAngle(), -.65,.65);
+                method.TurnAbsolute(-22, sensors.getZAngle(), -.65,.65);
                 i=0;
-                if (method.TurnDone(5) && CurrentTime >= 2){
+                if (method.TurnDone(-22) && CurrentTime >= 2){
                     Reset();
                     robot.hopper.setPosition(robot.SHOOT_POSITION);
                     method.sleep(400);
                     state =  State.Shoot;
                 }
                 break;
-
+ 
             case Shoot:
                 robot.hopper.setPosition(robot.SHOOT_POSITION);
                 if (currentRPM >= 3200) {
@@ -454,7 +457,7 @@ public class TeamworkBlue extends OpMode {
                     robot.indexer.setPosition(.55);
                     method.sleep(100);
                     i++;
-                    if (i == 4 && pathA) {
+                    if (i == 5 && pathA) {
                         i = 0;
                         Reset();
                         state =  State.Straighten1A;

@@ -52,7 +52,7 @@ public class RedTeleOp extends LinearOpMode {
         sensors.initSensors(hardwareMap);
         method.initMethods(hardwareMap);
         ElapsedTime runtime = new ElapsedTime();
-        endGameRPM = RevBlinkinLedDriver.BlinkinPattern.HEARTBEAT_RED;
+        endGameRPM = RevBlinkinLedDriver.BlinkinPattern.COLOR_WAVES_RAINBOW_PALETTE;
         teleOpRPM = RevBlinkinLedDriver.BlinkinPattern.CP1_LIGHT_CHASE;
         atRest = RevBlinkinLedDriver.BlinkinPattern.HEARTBEAT_RED;
 

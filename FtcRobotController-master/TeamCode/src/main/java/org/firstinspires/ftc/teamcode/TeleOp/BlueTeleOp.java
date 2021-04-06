@@ -52,7 +52,7 @@ public class BlueTeleOp extends LinearOpMode {
         sensors.initSensors(hardwareMap);
         method.initMethods(hardwareMap);
         ElapsedTime runtime = new ElapsedTime();
-        endGameRPM = RevBlinkinLedDriver.BlinkinPattern.HEARTBEAT_RED;
+        endGameRPM = RevBlinkinLedDriver.BlinkinPattern.COLOR_WAVES_RAINBOW_PALETTE;
         teleOpRPM = RevBlinkinLedDriver.BlinkinPattern.CP1_LIGHT_CHASE;
         atRest = RevBlinkinLedDriver.BlinkinPattern.HEARTBEAT_BLUE;
 
@@ -78,7 +78,7 @@ public class BlueTeleOp extends LinearOpMode {
 
 //-         Turns the robot at increments to easily score the powershots
             if (gamepad1.triangle && !turned){
-                method.PIDRotate(sensors.getZAngle()+5,.5);
+                method.PIDRotate(sensors.getZAngle()+4,.5);
                 turned = true;
             }
             else if(gamepad1.triangle && turned){
@@ -116,7 +116,7 @@ public class BlueTeleOp extends LinearOpMode {
                 shooter = false;
             }
             if (shooter){
-                method.shooterSpeed(4500, 4300);
+                method.shooterSpeed(4300, 4200);
                 robot.blinkinLedDriver.setPattern(teleOpRPM);
             } else if (endGameShoot){
                 robot.blinkinLedDriver.setPattern(endGameRPM);

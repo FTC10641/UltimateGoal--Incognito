@@ -65,10 +65,10 @@ public class Vision {
         /*
          * The core values which define the location and size of the sample regions
          */
-        static final Point REGION1_TOPLEFT_ANCHOR_POINT = new Point(250,30);
+        static final Point REGION1_TOPLEFT_ANCHOR_POINT = new Point(180,30);
 
-        static final int REGION_WIDTH = 45;
-        static final int REGION_HEIGHT = 35;
+        static final int REGION_WIDTH = 35;
+        static final int REGION_HEIGHT = 25;
 
         final int FOUR_RING_THRESHOLD = 150;
         final int ONE_RING_THRESHOLD = 135;
@@ -121,7 +121,7 @@ public class Vision {
                     region1_pointA, // First point which defines the rectangle
                     region1_pointB, // Second point which defines the rectangle
                     BLACK, // The color the rectangle is drawn in
-                    10); // Thickness of the rectangle lines
+                    1); // Thickness of the rectangle lines
 
             position = SkystoneDeterminationPipeline.RingPosition.FOUR; // Record our analysis
             if(avg1 > FOUR_RING_THRESHOLD){
