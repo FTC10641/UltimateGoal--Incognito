@@ -11,6 +11,10 @@ import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
 
 import java.util.Locale;
 
+/**
+ -This class houses all of our methods that we use during autonomous
+ */
+
 public class Methods {
 
     HardwareMap hwMap = null;

@@ -14,6 +14,10 @@ import org.firstinspires.ftc.teamcode.SubSystems.Sensors;
 
 import java.io.File;
 
+/**
+ - This houses all the controls that we use during TeleOp for the blue side of the field
+ */
+
 @TeleOp(name="BLUE", group="Linear Opmode")
 public class BlueTeleOp extends LinearOpMode {
     HardWareMap robot = new HardWareMap();

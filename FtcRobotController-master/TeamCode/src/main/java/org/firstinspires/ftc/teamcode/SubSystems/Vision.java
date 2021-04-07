@@ -14,6 +14,11 @@ import org.openftc.easyopencv.OpenCvCameraFactory;
 import org.openftc.easyopencv.OpenCvCameraRotation;
 import org.openftc.easyopencv.OpenCvPipeline;
 
+/**
+ -This class handles our vision
+ -including the camera and setting for OpenCV
+ */
+
 public class Vision {
     public OpenCvCamera webcam;
     public SkystoneDeterminationPipeline pipeline;
@@ -27,10 +32,6 @@ public class Vision {
         pipeline = new SkystoneDeterminationPipeline();
         webcam.setPipeline(pipeline);
 
-        // We set the viewport policy to optimized view so the preview doesn't appear 90 deg
-        // out when the RC activity is in portrait. We do our actual image processing assuming
-        // landscape orientation, though.
-//            webcam.setViewportRenderingPolicy(OpenCvCamera.ViewportRenderingPolicy.OPTIMIZE_VIEW);
 
         webcam.openCameraDeviceAsync(new OpenCvCamera.AsyncCameraOpenListener()
         {

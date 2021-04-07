@@ -14,6 +14,10 @@ import org.firstinspires.ftc.teamcode.SubSystems.Sensors;
 
 import java.io.File;
 
+/**
+ - This houses all the controls that we use during TeleOp for the red side of the field
+ */
+
 @TeleOp(name="RED", group="Linear Opmode")
 public class RedTeleOp extends LinearOpMode {
     HardWareMap robot = new HardWareMap();
@@ -21,13 +25,7 @@ public class RedTeleOp extends LinearOpMode {
     Sensors sensors = new Sensors();
     ElapsedTime time = new ElapsedTime();
 
-
-    boolean toggle = true;
-    boolean toggle2 = true;
-
     private boolean turned;
-
-
 
     private boolean shooter, endGameShoot;
     private double currentTick, currentTick2;
@@ -40,8 +38,6 @@ public class RedTeleOp extends LinearOpMode {
     double autoZValue;
 
     private RevBlinkinLedDriver.BlinkinPattern endGameRPM, teleOpRPM, atRest;
-
-
 
     @Override
     public void runOpMode() throws InterruptedException {
