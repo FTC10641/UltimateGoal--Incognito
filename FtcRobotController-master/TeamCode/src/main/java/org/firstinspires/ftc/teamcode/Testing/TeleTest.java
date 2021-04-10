@@ -198,7 +198,7 @@ public class TeleTest extends LinearOpMode {
             telemetry.addData("ZAngle: ", sensors.getZAngle());//- Will return current ZValue
             telemetry.addData("Shooter RPM = ", currentRPM);//- Will Return RPM of shooter motor 1
             telemetry.addData("Shooter RPM2 = ", currentRPM2);//- Will Return RPM of shooter motor 1
-            
+
             telemetry.addData("LeftF Tick", robot.frontLeft.getCurrentPosition());
             telemetry.addData("LeftB Tick", robot.backLeft.getCurrentPosition());
             telemetry.addData("RightB Tick", robot.backRight.getCurrentPosition());
