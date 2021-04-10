@@ -66,12 +66,6 @@ public class RedTeleOp extends LinearOpMode {
                 autoZValue = 0;
             }
 
-            if(gamepad2.dpad_right){
-                robot.upperSupper.setPosition(0);
-            } else{
-                robot.upperSupper.setPosition(1);
-            }
-
 //-         Turns the robot at increments to easily score the powershots
             if (gamepad1.triangle && !turned){
                 method.PIDRotate(sensors.getZAngle()-5,.5);

@@ -22,7 +22,6 @@ public class TeamworkBlue extends OpMode {
     private double currentTick, currentTick2;
     private double currentRPM, currentRPM2;
     private double lastTick, lastTick2;
-    private double shooterPower, shooterPower2;
     private double currentTime;
     private double lastTime;
 

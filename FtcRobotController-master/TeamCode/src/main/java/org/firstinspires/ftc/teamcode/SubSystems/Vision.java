@@ -41,14 +41,12 @@ public class Vision {
                 webcam.startStreaming(320,240, OpenCvCameraRotation.UPRIGHT);
             }
         });
-
-
     }
 
     public static class SkystoneDeterminationPipeline extends OpenCvPipeline
     {
         /*
-         * An enum to define the Ring position
+         - An enum to define the Ring position
          */
         public enum RingPosition
         {
@@ -58,13 +56,13 @@ public class Vision {
         }
 
         /*
-         * Some color constants
+         - Some color constants
          */
         static final Scalar YELLOW = new Scalar(225, 225, 0);
         static final Scalar BLACK = new Scalar(0, 0, 0);
 
         /*
-         * The core values which define the location and size of the sample regions
+         - The core values which define the location and size of the sample regions
          */
         static final Point REGION1_TOPLEFT_ANCHOR_POINT = new Point(180,30);
 
@@ -82,19 +80,19 @@ public class Vision {
                 REGION1_TOPLEFT_ANCHOR_POINT.y + REGION_HEIGHT);
 
         /*
-         * Working variables
+         - Working variables
          */
         Mat region1_Cb;
         Mat YCrCb = new Mat();
         Mat Cb = new Mat();
         int avg1;
 
-        // Volatile since accessed by OpMode thread w/o synchronization
+        //- Volatile since accessed by OpMode thread w/o synchronization
         public volatile SkystoneDeterminationPipeline.RingPosition position = SkystoneDeterminationPipeline.RingPosition.FOUR;
 
         /*
-         * This function takes the RGB frame, converts to YCrCb,
-         * and extracts the Cb channel to the 'Cb' variable
+         - This function takes the RGB frame, converts to YCrCb,
+         - and extracts the Cb channel to the 'Cb' variable
          */
         void inputToCb(Mat input)
         {
@@ -118,11 +116,11 @@ public class Vision {
             avg1 = (int) Core.mean(region1_Cb).val[0];
 
             Imgproc.rectangle(
-                    input, // Buffer to draw on
-                    region1_pointA, // First point which defines the rectangle
-                    region1_pointB, // Second point which defines the rectangle
-                    BLACK, // The color the rectangle is drawn in
-                    1); // Thickness of the rectangle lines
+                    input, //- Buffer to draw on
+                    region1_pointA, //- First point which defines the rectangle
+                    region1_pointB, //- Second point which defines the rectangle
+                    BLACK, //- The color the rectangle is drawn in
+                    1); //- Thickness of the rectangle lines
 
             position = SkystoneDeterminationPipeline.RingPosition.FOUR; // Record our analysis
             if(avg1 > FOUR_RING_THRESHOLD){
@@ -134,11 +132,11 @@ public class Vision {
             }
 
             Imgproc.rectangle(
-                    input, // Buffer to draw on
-                    region1_pointA, // First point which defines the rectangle
-                    region1_pointB, // Second point which defines the rectangle
-                    YELLOW, // The color the rectangle is drawn in
-                    -1); // Negative thickness means solid fill
+                    input, //- Buffer to draw on
+                    region1_pointA, //- First point which defines the rectangle
+                    region1_pointB, //- Second point which defines the rectangle
+                    YELLOW, //- The color the rectangle is drawn in
+                    -1); //- Negative thickness means solid fill
 
             return input;
         }

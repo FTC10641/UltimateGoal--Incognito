@@ -8,14 +8,13 @@ import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
 import org.firstinspires.ftc.robotcore.external.navigation.Orientation;
 
 /**
- - This class is to initialize the IMU (Inertial Measurement Unit)/gyroscope
+ - This class is to initialize the IMU (Inertial Measurement Unit)/gyroscope and the Webcam
  */
 
 public class Sensors extends HardWareMap {
 
         public BNO055IMU imu;
 
-        public Orientation angles;
         WebcamName webcamName = null;
 
 
@@ -23,11 +22,12 @@ public class Sensors extends HardWareMap {
         HardwareMap hwMap = null;
 
         public void initSensors(HardwareMap ahwMap) {
-            hwMap = ahwMap;
 
+//        -naming imu and webcam for the configuration file on the Robot Controller
             imu = ahwMap.get(BNO055IMU.class, "imu");
             webcamName = ahwMap.get(WebcamName.class, "Webcam 1");
 
+//-         This is to initialize the IMU, setting it to degrees and such
             BNO055IMU.Parameters parameters = new BNO055IMU.Parameters();
             parameters.angleUnit = BNO055IMU.AngleUnit.DEGREES;
             parameters.accelUnit = BNO055IMU.AccelUnit.METERS_PERSEC_PERSEC;
@@ -39,6 +39,7 @@ public class Sensors extends HardWareMap {
 
         }
 
+//- This gets the angle from the imu
     public double getZAngle(){
         return (-imu.getAngularOrientation().firstAngle);
     }
