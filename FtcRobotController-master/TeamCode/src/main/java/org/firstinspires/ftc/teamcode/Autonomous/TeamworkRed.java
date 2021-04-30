@@ -10,6 +10,19 @@ import org.firstinspires.ftc.teamcode.SubSystems.Methods;
 import org.firstinspires.ftc.teamcode.SubSystems.Sensors;
 import org.firstinspires.ftc.teamcode.SubSystems.Vision;
 
+/*
+ - This autonomous is where we do everything working with a team
+ - (designed with Revolutionary Robots) on red side, starts on inner line
+ - see below as to what it exactly achieves
+ */
+
+/*
+ - Path A: One Wobble, 3 high goals, and park. 56 pts
+ - Path B: One Wobble, 4 high goals, and park. 68 pts
+ - Path C: One Wobble, 7 high goals, and park. 104 pts
+ */
+
+
 @Autonomous(name = "TeamworkRed")
 
 public class TeamworkRed extends OpMode {

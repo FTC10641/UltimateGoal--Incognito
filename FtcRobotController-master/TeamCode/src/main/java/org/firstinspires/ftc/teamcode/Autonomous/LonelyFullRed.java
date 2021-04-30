@@ -12,13 +12,17 @@ import org.firstinspires.ftc.teamcode.SubSystems.*;
 /*
 ? Red is needs to be tested
 - Green is notes about the code
-+ Orange is just info
 */
 
 /*
- + Path A: Double Wobble, 3 high goals, and park. 71 pts
- + Path B: Double Wobble, 4 high goals, and park. 83 pts
- + Path C: One Wobble, 7 high goals, and park. 104 pts
+ - This autonomous is where we do everything by ourselves on red side
+ - see below as to what it exactly achieves
+ */
+
+/*
+ - Path A: Double Wobble, 3 high goals, and park. 71 pts
+ - Path B: Double Wobble, 4 high goals, and park. 83 pts
+ - Path C: One Wobble, 7 high goals, and park. 104 pts
  */
 
 
